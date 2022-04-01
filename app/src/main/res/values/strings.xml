@@ -26,6 +26,7 @@
     <string name="menu_life_label">生活</string>
     <string name="menu_health_label">健康</string>
     <string name="menu_compter_label">コンピューター</string>
+    <string name="menu_favorite_label">お気に入り</string>
 
     <string name="settings_titile">設定</string>
     <string name="change_name_hint">@string/login_name_hint</string>

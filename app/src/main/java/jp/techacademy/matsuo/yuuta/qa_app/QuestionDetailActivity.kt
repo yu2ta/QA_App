@@ -81,9 +81,6 @@ class QuestionDetailActivity : AppCompatActivity(), DatabaseReference.Completion
 
             if (favFlag == 0) {
                 var data = HashMap<String,String>()
-                data["title"] = mQuestion.title
-                data["name"] = mQuestion.name
-                data["body"] = mQuestion.body
                 data["genre"] = mQuestion.genre.toString()
                 data["uid"] = mQuestion.questionUid
                 favRef.push().setValue(data, this)

@@ -127,10 +127,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        fab2.setOnClickListener {
-            val intent = Intent(applicationContext, FavoriteActivity::class.java)
-            startActivity(intent)
-        }
 
         //ActionBar関連
         val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar, R.string.app_name, R.string.app_name)
@@ -139,6 +135,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            nav_view.menu.add("お気に入り")
+        }
         mDatabaseReference = FirebaseDatabase.getInstance().reference
 
         mAdapter = QuestionsListAdapter(this)
@@ -178,7 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        Log.d("qaapp", "onNavigationItemSelected")
+        Log.d("qaapp", id.toString())
 
         when (id) {
             R.id.nav_hobby -> {
@@ -196,6 +197,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_compter -> {
                 toolbar.title = getString(R.string.menu_compter_label)
                 mGenre = 4
+            }
+            0 -> {
+                val intent = Intent(applicationContext, FavoriteActivity::class.java)
+                startActivity(intent)
             }
         }
 
